@@ -13,7 +13,10 @@ body
     background-color: #F9F6F0;
     
 }
-
+.grid-images
+{
+    max-width: 30%;
+}
 
 .hero-title
 {
