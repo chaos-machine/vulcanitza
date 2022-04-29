@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>easyData - open source & free solutions</title>
+
+    <!-- jQuery -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+    crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.jqueryui.min.css"/>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.jqueryui.min.js"></script>
+    <!-- jQuery -->
+
+
+    
+
+    <!-- Icon -->
+    <link
+      rel="icon"
+      href="https://easy-data.mdbgo.io/img/favicon/favicon-32x32.png"
+      type="image/x-icon"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+    />
+   
+    <!--Custome Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;700&display=swap" rel="stylesheet">
+    
+     <!-- Google Fonts Roboto -->
+     <link
+     rel="stylesheet"
+     href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+   />
+    <!-- MDB UI KIT -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/mainstyles.css" />
+    <style></style>
+  </head>
+
+  <body>
+      <!--Main Navigation-->
+      <header>
+          <!-- Navbar-->
+          
+          <!-- Navbar -->
+      </header>
+      <!--Main Navigation-->
+      <!--Main layout-->
+
+
+      <main>
+
+          <div class="container" id="container">
+
+        <p class="hero-title">Vulcănița</p>
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                >
+                  <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Acasă</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Poze</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Tabel</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Model 3D</a>
+                    </li>
+                   
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+            <img src="https://drive.google.com/uc?export=view&id=1QhFkXqzZLVPkaw5v4EOAknCEvAGf1BAB" class="header-image justify-content-center">
+
+
+          </div>
+      </main>
+
+
+      <!--Main layout-->
+      
+
+      <!--Footer-->
+      <footer></footer>
+      <!--Footer-->
+      <!-- MDB ESSENTIAL -->
+      <script type="text/javascript" src="js/mdb.min.js"></script>
+      <!-- Google API -->
+      <script src="https://apis.google.com/js/api.js"></script>
+      <!-- easyData -->
+      <script type="text/javascript" src="js/easyData-google-sheets.js"></script>
+
+      <!-- easyData - Creating table -->
+      <script>{
+              
+                  // Your API KEY
+
+                  const API_KEY = "AIzaSyC6-CsinnujqUuaROYwHdMBEKhf62esXTA";
+                  var range;
+                  var sheetLenght;
+                  var newRange = new Array();
+                  var tableTitleText;
+               
+                  const spreadsheetId = "1_GuhjbrJfQuRJef8s5gNtQ9rkCI9Ra6cclQkJYJXdYY";
+
+
+                  function displayResult2(response) {
+                      
+                      var myTable = document.createElement("table")
+                      myTable.classList.add("table")
+                      myTable.classList.add("table-bordered")
+                      myTable.classList.add("margin-bottom-lg")
+                      myTable.id = "testdata"
+                    
+                     
+                      var tableTitle = document.createElement("table-title")
+                      tableTitle.textContent = response.result.range.split('!')[0];
+                      tableTitle.classList.add("section-title")
+                      document.getElementById("container").appendChild(tableTitle);
+
+                      response.result.values.forEach((row, index) => {
+                      myTable.insertRow();
+                      
+                      for (let cell of row) {
+                          let newCell = myTable.rows[myTable.rows.length - 1].insertCell();
+                          newCell.textContent = cell;
+                          newCell.classList.add("cell-width-lg");
+                          //HACKY - TO FIX:turn the row into a header row
+                          if(index==0)
+                          {
+                            newCell.classList.add("bg-light");
+                            newCell.classList.add("table-header");
+                          }
+                        }
+                      });
+                      document.getElementById("container").appendChild(myTable);
+
+                       // document.getElementById("table-head").innerHTML = tableHead;
+                       // document.getElementById("table-body").innerHTML = tableBody;
+                  }
+
+                  function displaySheet1(sheetResponse)
+                  {
+                    console.log("Getting sheet properties")
+                    sheetLenght = Object.keys(sheetResponse.result.sheets).length
+                      for(var i=0;i<sheetLenght;i++)
+                      {
+                          newRange.push(sheetResponse.result.sheets[i].properties.title)
+                          console.log("index is:" + i)
+                          console.log(newRange[i])
+
+                          range =  newRange[i] + "!A:Z" 
+
+                          getPublicValues({ spreadsheetId, range}, displayResult2);
+                          console.log(newRange) 
+                          console.log("Error check")
+                         
+                         
+                      }
+                   
+                  }
+
+                  function loadData() {
+                      // Spreadsheet ID
+                      console.log("Main function")
+                      getSheet({spreadsheetId} , displaySheet1);
+                      
+                  }
+
+                  window.addEventListener("load", (e) => {
+                      initOAuthClient({ apiKey: API_KEY });
+                  });
+
+                  document.addEventListener("gapi-loaded", (e) => {
+                      console.log("document listener")
+                      loadData();
+
+                  });
+                  
+                 
+              }
+          </script>
+  </body>
+</html>
