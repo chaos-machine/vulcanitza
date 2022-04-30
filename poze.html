@@ -10,11 +10,8 @@
     <title>Vulcanita</title>
 
     <!-- jQuery -->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-    crossorigin="anonymous"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.jqueryui.min.css"/>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.jqueryui.min.js"></script>
@@ -82,6 +79,7 @@
                 </div>
               </nav>
 
+
               <img src="img/img1.jpg" class="grid-images">
               <img src="img/img2.jpeg" class="grid-images">
               <img src="img/img3.jpeg" class="grid-images">
@@ -92,7 +90,20 @@
     </main>
 
     <script>
-     
+                var folder = "img/";
+
+                $.ajax({
+                    url : folder,
+                    success: function (data) {
+                        $(data).find("a").attr("href", function (i, val) {
+                            console.log(data)
+                            if(val.match(/\.(jpe?g|png|gif)$/) ) { 
+                                $("body").append( "<img src='"+ folder + val +"'>" );
+                            } 
+                        });
+                    }
+                });
+
     </script>
 </body>
 
