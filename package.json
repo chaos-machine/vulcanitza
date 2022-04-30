@@ -8,5 +8,8 @@
   },
   "author": "MDB <office@mdbootstrap.com>",
   "license": "MIT",
-  "homepage": "https://easy-data.mdbgo.io/"
+  "homepage": "https://easy-data.mdbgo.io/",
+  "dependencies": {
+    "nodejs": "0.0.0"
+  }
 }
