@@ -80,10 +80,7 @@
               </nav>
 
 
-              <img src="img/img1.jpg" class="grid-images">
-              <img src="img/img2.jpeg" class="grid-images">
-              <img src="img/img3.jpeg" class="grid-images">
-
+          
 
               
         </div>
@@ -98,7 +95,7 @@
                         $(data).find("a").attr("href", function (i, val) {
                             console.log(data)
                             if(val.match(/\.(jpe?g|png|gif)$/) ) { 
-                                $("body").append( "<img src='"+ folder + val +"'>" );
+                                $("#container").append( "<img src='" + val + "'" + "class='grid-images'" + ">" );
                             } 
                         });
                     }
