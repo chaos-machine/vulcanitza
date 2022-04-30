@@ -84,7 +84,8 @@
     </main>
 
     <script>
-                var folder = "img/";
+        
+                var folder = "vulcanitza/img/";
 
                 $.ajax({
                     url : folder,
@@ -92,6 +93,7 @@
                         $(data).find("a").attr("href", function (i, val) {
                             if(val.match(/\.(jpe?g|png|gif)$/) ) { 
                                var newVal = val.replace("/website/","")
+                               console.log(newVal)
                                 $("#container").append( "<img src='" + newVal + "'" + "class='grid-images'" + ">" );
                             } 
                         });
